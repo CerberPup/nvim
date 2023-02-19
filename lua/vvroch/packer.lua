@@ -22,7 +22,7 @@ require('packer').startup(function(use)
     use 'sheerun/vim-polyglot'
 
     --Nvim motions
-    use 'phaazon/hop.nvim'
+    -- use 'phaazon/hop.nvim'
 
     -- TJ created lodash of neovim
     use("nvim-lua/popup.nvim")
