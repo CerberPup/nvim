@@ -167,4 +167,7 @@ toggle_key='<C-s>'
 }
 require "lsp_signature".setup(cfg)
 
-
+require("lsp_lines").setup()
+vim.diagnostic.config({
+  virtual_text = false,
+})
