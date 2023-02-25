@@ -1,4 +1,4 @@
-require("vvroch.packer")
+require("vvroch.lazy")
 require("vvroch.set")
 require("vvroch.remap")
 require("vvroch.setup")

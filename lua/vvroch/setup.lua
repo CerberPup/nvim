@@ -1,9 +1,8 @@
 -- Aesthetic
 -- pcall catches errors if the plugin doesn't load
-local ok, catppuccin = pcall(require, "catppuccin")
-if not ok then return end
-catppuccin.setup {}
-vim.cmd[[colorscheme catppuccin]]
+--local ok, catppuccin = pcall(require, "catppuccin")
+--if not ok then return end
+--catppuccin.setup {}
 
 -- require'nvim-treesitter.configs'.setup { ensure_installed = "all", highlight = { enable = true } }
 
@@ -167,7 +166,6 @@ toggle_key='<C-s>'
 }
 require "lsp_signature".setup(cfg)
 
-require("lsp_lines").setup()
 vim.diagnostic.config({
   virtual_text = false,
 })
