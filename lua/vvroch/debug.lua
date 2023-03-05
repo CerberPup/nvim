@@ -45,13 +45,13 @@ require 'mason-nvim-dap'.setup_handlers {
               request = "launch",
               MIMode = 'lldb',
               program = function()
-                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                return vim.fn.input({'Path to executable: '}, vim.fn.getcwd() .. '/', 'file')
               end,
               cwd = '${workspaceFolder}',
               stopAtEntry = false,
               externalConsole = false,
               args = function()
-                return {vim.fn.input('Argument: ')}
+                return {vim.fn.input({'Argument: '})}
               end,
             },
             {
@@ -60,7 +60,7 @@ require 'mason-nvim-dap'.setup_handlers {
               request = "launch",
               MIMode = 'lldb',
               program = function()
-                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'out')
+                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/out')
               end,
               cwd = '${workspaceFolder}',
               stopAtEntry = false,
@@ -75,7 +75,7 @@ require 'mason-nvim-dap'.setup_handlers {
               request = "launch",
               MIMode = 'lldb',
               program = function ()
-                return vim.fn.getcwd() .. '/' .. 'out'
+                return vim.fn.getcwd() .. '/build/out'
               end,
               cwd = '${workspaceFolder}',
               stopAtEntry = false,
@@ -96,7 +96,24 @@ require 'mason-nvim-dap'.setup_handlers {
             --},
           }
           dap.configurations.c = dap.configurations.cpp
-          dap.configurations.rust = dap.configurations.cpp
+          dap.configurations.rust ={
+            {
+              name = "Rust lanunch",
+              type = "cppdbg",
+              request = "launch",
+              MIMode = 'lldb',
+              program = function()
+                local execname = string.match(vim.fn.getcwd(),".*/(.*)")
+                return vim.fn.getcwd() .. "/target/debug/" .. execname
+              end,
+              cwd = '${workspaceFolder}',
+              stopAtEntry = false,
+              externalConsole = false,
+              args = function()
+                return {vim.fn.input('Argument: ')}
+              end,
+            }}
+
     -- INFO: execute ~/Downloads/vscode-extensions/codelldb/extension/adapter/codelldb --port 13000
 --        dap.adapters.codelldb = {
 --          type = 'server',
