@@ -10,6 +10,15 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- delete without yanking
+nnoremap('d', '"_d', { desc = 'Delete without yank'})
+vnoremap('d', '"_d', { desc = 'Delete without yank'})
+
+-- replace currently selected text with default register
+-- without yanking it
+vnoremap('p','"_dp', { desc = 'Delete without yank'})
+vnoremap('P','"_dP', { desc = 'Delete without yank'})
+
 inoremap("jk", "<esc>", {desc = 'Escape to from insert'})
 vnoremap("<C-c>", "\"*y<CR>", {desc = 'Yank to system clipboard'})
 
