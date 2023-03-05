@@ -1,6 +1,5 @@
 return {
 
-    'nvim-lualine/lualine.nvim',
     'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
     'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
     'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
@@ -44,9 +43,6 @@ return {
     'windwp/nvim-autopairs', -- auto close parentheses
 
     -- 'simrat39/symbols-outline.nvim' -- jump i rename z okienka
-
-    'mbbill/undotree',
-
     { -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
         build = function()
