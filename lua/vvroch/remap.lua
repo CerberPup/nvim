@@ -11,8 +11,8 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- delete without yanking
-nnoremap('d', '"_d', { desc = 'Delete without yank'})
-vnoremap('d', '"_d', { desc = 'Delete without yank'})
+nnoremap('<leader>d', '"_d', { desc = 'Delete without yank'})
+vnoremap('<leader>d', '"_d', { desc = 'Delete without yank'})
 
 -- replace currently selected text with default register
 -- without yanking it
