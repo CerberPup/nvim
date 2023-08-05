@@ -32,10 +32,8 @@ end
 
 require ('mason-nvim-dap').setup({
     automatic_setup = true,
-    ensure_installed = {'python'}
-})
-
-require 'mason-nvim-dap'.setup_handlers {
+    ensure_installed = {'python'},
+    handlers={
     function(source_name)
       -- all sources with no handler get passed here
           dap.configurations.cpp = {
@@ -178,4 +176,6 @@ require 'mason-nvim-dap'.setup_handlers {
 	        },
         }
     end,
-}
+  }
+})
+
