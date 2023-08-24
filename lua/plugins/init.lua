@@ -16,7 +16,6 @@ return {
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
 
-    'folke/todo-comments.nvim',
     -- All the things
     'glepnir/lspsaga.nvim', --Powerful lsp fix, rename, jump thingy
     'nvim-lua/lsp_extensions.nvim', -- podpowiedzi w postaci nazw argumentów funkcji
@@ -43,15 +42,6 @@ return {
     'windwp/nvim-autopairs', -- auto close parentheses
 
     -- 'simrat39/symbols-outline.nvim' -- jump i rename z okienka
-    { -- Highlight, edit, and navigate code
-        'nvim-treesitter/nvim-treesitter',
-        build = function()
-            pcall(require('nvim-treesitter.install').update { with_sync = true })
-        end,
-        dependencies = {'nvim-treesitter/nvim-treesitter-textobjects'}
-    },
-
-    'romgrk/nvim-treesitter-context', -- floating line of function you are inside
 
     --debugging
     'mfussenegger/nvim-dap',
@@ -64,15 +54,6 @@ return {
     --Grammar checking becaI can't english
     'rhysd/vim-grammarous',
 
-    --devicons
-    'kyazdani42/nvim-web-devicons',
-
-    --fullstack dev
-    'pangloss/vim-javascript', --JS support
-    'leafgarland/typescript-vim', --TS support
-    'maxmellon/vim-jsx-pretty', --JS and JSX syntax
-    'jparise/vim-graphql', --GraphQL syntax
-    'mattn/emmet-vim',
 
     -- Git related plugins
     'tpope/vim-fugitive',
