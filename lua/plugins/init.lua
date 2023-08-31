@@ -1,5 +1,6 @@
 return {
-
+    { import = 'plugins.rust' },
+    { import = 'plugins.webdev' },
     'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
     'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
     'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically

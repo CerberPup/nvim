@@ -16,8 +16,8 @@ vnoremap('<leader>d', '"_d', { desc = 'Delete without yank'})
 
 -- replace currently selected text with default register
 -- without yanking it
-vnoremap('p','"_dp', { desc = 'Delete without yank'})
-vnoremap('P','"_dP', { desc = 'Delete without yank'})
+vnoremap('p','"_dp', { desc = 'Paste without yank'})
+vnoremap('P','"_dP', { desc = 'Paste without yank'})
 
 inoremap("jk", "<esc>", {desc = 'Escape to from insert'})
 vnoremap("<C-c>", "\"*y<CR>", {desc = 'Yank to system clipboard'})
@@ -38,5 +38,4 @@ nnoremap('<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]ind 
 nnoremap('<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]ind [D]iagnostics' })
 
 
-nnoremap('<leader>c', ':wa <bar> :set makeprg=cd\\ build\\ &&\\ cmake\\ -DCMAKE_BUILD_TYPE=debug\\ -DCMAKE_EXPORT_COMPILE_COMMANDS=1\\ ../src\\ &&\\ cmake\\ --build\\ . <bar> :compiler gcc <bar> :make <CR>')
-
+--nnoremap('<leader>c', ':wa <bar> :set makeprg=cd\\ build\\ &&\\ cmake\\ -DCMAKE_BUILD_TYPE=debug\\ -DCMAKE_EXPORT_COMPILE_COMMANDS=1\\ ../src\\ &&\\ cmake\\ --build\\ . <bar> :compiler gcc <bar> :make <CR>')
