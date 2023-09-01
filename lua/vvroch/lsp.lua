@@ -13,15 +13,6 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Setup neovim lua configuration
 require('neodev').setup()
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
 
 -- LSP settings.
 -- This function gets run when an LSP connects to a particular buffer.
@@ -78,7 +69,7 @@ local servers = {
    clangd = {},
   -- gopls = {},
    pyright = {},
-   rust_analyzer = {},
+   -- rust_analyzer = {},
   -- tsserver = {},
 
   --sumneko_lua = {
@@ -102,3 +93,20 @@ require("mason-lspconfig").setup_handlers {
     }
   end,
 }
+
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>ca", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+  tools = {
+    hover_actions = {
+      auto_focus=true,
+    },
+  },
+})
