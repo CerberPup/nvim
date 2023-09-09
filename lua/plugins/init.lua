@@ -13,9 +13,6 @@ return {
 
     -- TJ created lodash of neovim
     'nvim-lua/popup.nvim',
-    {'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
-    -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
 
     -- All the things
     'glepnir/lspsaga.nvim', --Powerful lsp fix, rename, jump thingy

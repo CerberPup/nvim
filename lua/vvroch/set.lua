@@ -1,7 +1,7 @@
 -- vim.opt.guicursor = "guicursor=n-v-c:block"
 vim.opt.cursorline = true
 vim.opt.ma = true
-vim.opt.mouse = a
+vim.opt.mouse = 'a'
 
 -- Enable break indent
 vim.o.breakindent = true

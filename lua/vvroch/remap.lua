@@ -29,13 +29,4 @@ nnoremap("<leader>l", ":wincmd l<CR>")
 
 nnoremap("<leader>u", ":UndotreeToggle<CR>")
 
-nnoremap("<C-f>", ":lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy='ascending', prompt_position='top'})<CR>", {desc = 'Find in current buffer'})
-nnoremap('<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
-nnoremap('<leader>fk', require('telescope.builtin').keymaps, { desc = '[F]ind [K]ey' })
-nnoremap('<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]ind [H]elp' })
-nnoremap('<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
-nnoremap('<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]ind by [G]rep' })
-nnoremap('<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]ind [D]iagnostics' })
-
-
 --nnoremap('<leader>c', ':wa <bar> :set makeprg=cd\\ build\\ &&\\ cmake\\ -DCMAKE_BUILD_TYPE=debug\\ -DCMAKE_EXPORT_COMPILE_COMMANDS=1\\ ../src\\ &&\\ cmake\\ --build\\ . <bar> :compiler gcc <bar> :make <CR>')
