@@ -11,9 +11,6 @@ require("nvim-autopairs").setup()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- Setup neovim lua configuration
-require('neodev').setup()
-
 -- LSP settings.
 -- This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
@@ -30,7 +27,6 @@ local on_attach = function(_, bufnr)
 
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
-
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
@@ -93,7 +89,18 @@ require("mason-lspconfig").setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
-      on_attach = on_attach,
+      on_attach = function ()
+        if server_name == "clangd" then
+          local glob = vim.fn.glob(vim.fn.getcwd() .. "/src/main.cpp",true,true)
+          if next(glob) ~= nil then
+            vim.api.nvim_create_autocmd("BufWritePost", {
+              pattern = {"*.cpp", "*.h"},
+              command = ":!" .. vim.fn.stdpath("config") .. "/scripts/build.sh"
+            })
+          end
+        end
+        return on_attach
+      end,
       settings = servers[server_name],
     }
   end,

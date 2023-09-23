@@ -36,110 +36,125 @@ require ('mason-nvim-dap').setup({
     handlers={
     function(source_name)
       -- all sources with no handler get passed here
-          dap.configurations.cpp = {
-            {
-              name = "Launch file",
-              type = "cppdbg",
-              request = "launch",
-              MIMode = 'lldb',
-              program = function()
-                return vim.fn.input({'Path to executable: '}, vim.fn.getcwd() .. '/', 'file')
-              end,
-              cwd = '${workspaceFolder}',
-              stopAtEntry = false,
-              externalConsole = false,
-              args = function()
-                return {vim.fn.input({'Argument: '})}
-              end,
-            },
-            {
-              name = "out run arg",
-              type = "cppdbg",
-              request = "launch",
-              MIMode = 'lldb',
-              program = function()
-                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/out')
-              end,
-              cwd = '${workspaceFolder}',
-              stopAtEntry = false,
-              externalConsole = false,
-              args = function()
-                return {vim.fn.input('Argument: ')}
-              end,
-            },
-            {
-              name = "out run ",
-              type = "cppdbg",
-              request = "launch",
-              MIMode = 'lldb',
-              program = function ()
-                return vim.fn.getcwd() .. '/build/out'
-              end,
-              cwd = '${workspaceFolder}',
-              stopAtEntry = false,
-              externalConsole = false,
-              args = {'input.txt'},
-            },
-            --{
-            --  name = 'Attach to gdbserver :1234',
-            --  type = 'cppdbg',
-            --  request = 'launch',
-            --  MIMode = 'gdb',
-            --  miDebuggerServerAddress = 'localhost:1234',
-            --  miDebuggerPath = '/usr/bin/gdb',
-            --  cwd = '${workspaceFolder}',
-            --  program = function()
-            --    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-            --  end,
-            --},
-          }
-          dap.configurations.c = dap.configurations.cpp
-          dap.configurations.rust ={
-            {
-              name = "Rust lanunch",
-              type = "cppdbg",
-              request = "launch",
-              MIMode = 'lldb',
-              program = function()
-                local execname = string.match(vim.fn.getcwd(),".*/(.*)")
-                return vim.fn.getcwd() .. "/target/debug/" .. execname
-              end,
-              cwd = '${workspaceFolder}',
-              stopAtEntry = false,
-              externalConsole = false,
-              args = function()
-                return {vim.fn.input('Argument: ')}
-              end,
-            }}
+          -- dap.configurations.cpp = {
+          --   {
+          --     name = "Launch file",
+          --     type = "cppdbg",
+          --     request = "launch",
+          --     MIMode = 'lldb',
+          --     program = function()
+          --       return vim.fn.input({'Path to executable: '}, vim.fn.getcwd() .. '/', 'file')
+          --     end,
+          --     cwd = '${workspaceFolder}',
+          --     stopAtEntry = false,
+          --     externalConsole = false,
+          --     args = function()
+          --       return {vim.fn.input({'Argument: '})}
+          --     end,
+          --   },
+          --   {
+          --     name = "out run arg",
+          --     type = "cppdbg",
+          --     request = "launch",
+          --     MIMode = 'lldb',
+          --     program = function()
+          --       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/out')
+          --     end,
+          --     cwd = '${workspaceFolder}',
+          --     stopAtEntry = false,
+          --     externalConsole = false,
+          --     args = function()
+          --       return {vim.fn.input('Argument: ')}
+          --     end,
+          --   },
+          --   {
+          --     name = "out run ",
+          --     type = "cppdbg",
+          --     request = "launch",
+          --     MIMode = 'lldb',
+          --     program = function ()
+          --       return vim.fn.getcwd() .. '/out'
+          --     end,
+          --     cwd = '${workspaceFolder}',
+          --     stopAtEntry = false,
+          --     externalConsole = false,
+          --     args = {'input.txt'},
+          --   },
+          --   --{
+          --   --  name = 'Attach to gdbserver :1234',
+          --   --  type = 'cppdbg',
+          --   --  request = 'launch',
+          --   --  MIMode = 'gdb',
+          --   --  miDebuggerServerAddress = 'localhost:1234',
+          --   --  miDebuggerPath = '/usr/bin/gdb',
+          --   --  cwd = '${workspaceFolder}',
+          --   --  program = function()
+          --   --    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          --   --  end,
+          --   --},
+          -- }
+          -- dap.configurations.c = dap.configurations.cpp
+        dap.configurations.rust ={
+          {
+            name = "Rust lanunch",
+            type = "cppdbg",
+            request = "launch",
+            MIMode = 'lldb',
+            program = function()
+              local execname = string.match(vim.fn.getcwd(),".*/(.*)")
+              return vim.fn.getcwd() .. "/target/debug/" .. execname
+            end,
+            cwd = '${workspaceFolder}',
+            stopAtEntry = false,
+            externalConsole = false,
+            args = function()
+              return {vim.fn.input('Argument: ')}
+            end,
+          }}
 
-    -- INFO: execute ~/Downloads/vscode-extensions/codelldb/extension/adapter/codelldb --port 13000
---        dap.adapters.codelldb = {
---          type = 'server',
---          port = 13000,
---            executable = {
---            -- CHANGE THIS to your path!
---            command = '/Users/vvroch/.local/share/nvim/mason/bin/codelldb',
---            args = {"--port", "13000"},
---
---            -- On windows you may have to uncomment this:
---            -- detached = false,
---          }
---        }
---
---        dap.configurations.c = {
---            {
---                type = 'codelldb',
---                request = 'launch',
---                program = function()
---                    return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/', 'file')
---                end,
---                --program = '${fileDirname}/${fileBasenameNoExtension}',
---                cwd = '${workspaceFolder}',
---                terminal = 'integrated'
---            }
---        }
---
---        dap.configurations.cpp = dap.configurations.c
+        -- INFO: execute ~/Downloads/vscode-extensions/codelldb/extension/adapter/codelldb --port 13000
+
+        -- dap.adapters.codelldb = {
+        --   type = 'server',
+        --   port = 13000,
+        --   executable = {
+        --     -- CHANGE THIS to your path!
+        --     command = function ()
+        --       return vim.fn.stdpath("data") .. "/mason/bin/codelldb"
+        --     end,
+        --     args = {"--port", "13000"},
+        --
+        --     -- On windows you may have to uncomment this:
+        --     -- detached = false,
+        --   }
+        -- }
+
+        dap.configurations.cpp = {
+          {
+            name = "Launch out",
+            type = 'codelldb',
+            request = 'launch',
+            program = function()
+              return  vim.fn.getcwd() .. '/out'
+            end,
+            --program = '${fileDirname}/${fileBasenameNoExtension}',
+            cwd = '${workspaceFolder}',
+            terminal = 'integrated'
+          },
+          {
+            name = "Launch arg",
+            type = 'codelldb',
+            request = 'launch',
+            program = function()
+              return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/', 'file')
+            end,
+            --program = '${fileDirname}/${fileBasenameNoExtension}',
+            cwd = '${workspaceFolder}',
+            terminal = 'integrated'
+          }
+        }
+
+        dap.configurations.c = dap.configurations.c
 --
 --        dap.configurations.rust = {
 --            {
