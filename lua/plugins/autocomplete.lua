@@ -8,6 +8,7 @@ return { -- Autocompletion
         local cmp = require 'cmp'
         local cmp_autopairs = require('nvim-autopairs.completion.cmp')
         cmp.setup({
+            preselect = cmp.PreselectMode.None,
             snippet = {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
@@ -19,7 +20,7 @@ return { -- Autocompletion
                 ['<C-Space>'] = cmp.mapping.complete(),
                 ['<CR>'] = cmp.mapping.confirm {
                     behavior = cmp.ConfirmBehavior.Replace,
-                    select = true,
+                    select = false,
                 },
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
