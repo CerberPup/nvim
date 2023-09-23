@@ -60,6 +60,11 @@ local on_attach = function(_, bufnr)
 end
 
 
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {desc = "Previous diagnostic"})
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {desc = "Next diagnostic"})
+vim.keymap.set('n', '<leader>cdf', vim.diagnostic.open_float, {desc = "[C]ode [D]iagnostic [F]loat"})
+vim.keymap.set('n', '<leader>cdl', vim.diagnostic.setloclist, {desc = "[C]ode [D]iagnostic [L]ist"})
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --

@@ -1,6 +1,8 @@
 return {
     { import = 'plugins.rust' },
     { import = 'plugins.webdev' },
+    { import = 'plugins.git' },
+
     'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
     'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
     'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
@@ -53,8 +55,7 @@ return {
     'rhysd/vim-grammarous',
 
 
-    -- Git related plugins
-    'tpope/vim-fugitive',
-    'tpope/vim-rhubarb',
-    'lewis6991/gitsigns.nvim',
+    -- -- Git related plugins
+    -- 'tpope/vim-fugitive',
+    -- 'tpope/vim-rhubarb',
 }

@@ -13,8 +13,8 @@ return {
       },
       {
         '<leader>fpg',
-        function() require('telescope.builtin').live_grep() end,
-        desc = '[F]ind [Plugin] by [G]rep'
+        function() require('telescope.builtin').live_grep({ cwd = '~/.config/nvim/lua' }) end,
+        desc = '[F]ind [P]lugin by [G]rep'
       },
       {
         "<C-f>",
