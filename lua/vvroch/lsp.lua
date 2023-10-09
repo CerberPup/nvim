@@ -89,7 +89,7 @@ require("mason-lspconfig").setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
-      on_attach = function ()
+      on_attach = function (_, bufnr)
         if server_name == "clangd" then
           local glob = vim.fn.glob(vim.fn.getcwd() .. "/src/main.cpp",true,true)
           if next(glob) ~= nil then
@@ -99,7 +99,7 @@ require("mason-lspconfig").setup_handlers {
             })
           end
         end
-        return on_attach
+        return on_attach(_, bufnr)
       end,
       settings = servers[server_name],
     }
