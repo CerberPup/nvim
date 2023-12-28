@@ -3,7 +3,6 @@ return {
     { import = 'plugins.webdev' },
     { import = 'plugins.git' },
 
-    'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
     'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
     'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
@@ -49,7 +48,7 @@ return {
     'nvim-telescope/telescope-dap.nvim',
 
     --Grammar checking becaI can't english
-    'rhysd/vim-grammarous',
+    --'rhysd/vim-grammarous',
 
 
     -- -- Git related plugins
