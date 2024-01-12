@@ -31,86 +31,86 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 require ('mason-nvim-dap').setup({
-    automatic_setup = true,
-    ensure_installed = {'python'},
-    handlers={
+  automatic_setup = true,
+  ensure_installed = {'python'},
+  handlers={
     function(source_name)
       -- all sources with no handler get passed here
-          -- dap.configurations.cpp = {
-          --   {
-          --     name = "Launch file",
-          --     type = "cppdbg",
-          --     request = "launch",
-          --     MIMode = 'lldb',
-          --     program = function()
-          --       return vim.fn.input({'Path to executable: '}, vim.fn.getcwd() .. '/', 'file')
-          --     end,
-          --     cwd = '${workspaceFolder}',
-          --     stopAtEntry = false,
-          --     externalConsole = false,
-          --     args = function()
-          --       return {vim.fn.input({'Argument: '})}
-          --     end,
-          --   },
-          --   {
-          --     name = "out run arg",
-          --     type = "cppdbg",
-          --     request = "launch",
-          --     MIMode = 'lldb',
-          --     program = function()
-          --       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/out')
-          --     end,
-          --     cwd = '${workspaceFolder}',
-          --     stopAtEntry = false,
-          --     externalConsole = false,
-          --     args = function()
-          --       return {vim.fn.input('Argument: ')}
-          --     end,
-          --   },
-          --   {
-          --     name = "out run ",
-          --     type = "cppdbg",
-          --     request = "launch",
-          --     MIMode = 'lldb',
-          --     program = function ()
-          --       return vim.fn.getcwd() .. '/out'
-          --     end,
-          --     cwd = '${workspaceFolder}',
-          --     stopAtEntry = false,
-          --     externalConsole = false,
-          --     args = {'input.txt'},
-          --   },
-          --   --{
-          --   --  name = 'Attach to gdbserver :1234',
-          --   --  type = 'cppdbg',
-          --   --  request = 'launch',
-          --   --  MIMode = 'gdb',
-          --   --  miDebuggerServerAddress = 'localhost:1234',
-          --   --  miDebuggerPath = '/usr/bin/gdb',
-          --   --  cwd = '${workspaceFolder}',
-          --   --  program = function()
-          --   --    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-          --   --  end,
-          --   --},
-          -- }
-          -- dap.configurations.c = dap.configurations.cpp
-        dap.configurations.rust ={
-          {
-            name = "Rust lanunch",
-            type = "cppdbg",
-            request = "launch",
-            MIMode = 'lldb',
-            program = function()
-              local execname = string.match(vim.fn.getcwd(),".*/(.*)")
-              return vim.fn.getcwd() .. "/target/debug/" .. execname
-            end,
-            cwd = '${workspaceFolder}',
-            stopAtEntry = false,
-            externalConsole = false,
-            args = function()
-              return {vim.fn.input('Argument: ')}
-            end,
-          }}
+      -- dap.configurations.cpp = {
+      --   {
+      --     name = "Launch file",
+      --     type = "cppdbg",
+      --     request = "launch",
+      --     MIMode = 'lldb',
+      --     program = function()
+      --       return vim.fn.input({'Path to executable: '}, vim.fn.getcwd() .. '/', 'file')
+      --     end,
+      --     cwd = '${workspaceFolder}',
+      --     stopAtEntry = false,
+      --     externalConsole = false,
+      --     args = function()
+      --       return {vim.fn.input({'Argument: '})}
+      --     end,
+      --   },
+      --   {
+      --     name = "out run arg",
+      --     type = "cppdbg",
+      --     request = "launch",
+      --     MIMode = 'lldb',
+      --     program = function()
+      --       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/out')
+      --     end,
+      --     cwd = '${workspaceFolder}',
+      --     stopAtEntry = false,
+      --     externalConsole = false,
+      --     args = function()
+      --       return {vim.fn.input('Argument: ')}
+      --     end,
+      --   },
+      --   {
+      --     name = "out run ",
+      --     type = "cppdbg",
+      --     request = "launch",
+      --     MIMode = 'lldb',
+      --     program = function ()
+      --       return vim.fn.getcwd() .. '/out'
+      --     end,
+      --     cwd = '${workspaceFolder}',
+      --     stopAtEntry = false,
+      --     externalConsole = false,
+      --     args = {'input.txt'},
+      --   },
+      --   --{
+      --   --  name = 'Attach to gdbserver :1234',
+      --   --  type = 'cppdbg',
+      --   --  request = 'launch',
+      --   --  MIMode = 'gdb',
+      --   --  miDebuggerServerAddress = 'localhost:1234',
+      --   --  miDebuggerPath = '/usr/bin/gdb',
+      --   --  cwd = '${workspaceFolder}',
+      --   --  program = function()
+      --   --    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      --   --  end,
+      --   --},
+      -- }
+      -- dap.configurations.c = dap.configurations.cpp
+      dap.configurations.rust ={
+        {
+          name = "Rust lanunch",
+          type = "cppdbg",
+          request = "launch",
+          MIMode = 'lldb',
+          program = function()
+            local execname = string.match(vim.fn.getcwd(),".*/(.*)")
+            return vim.fn.getcwd() .. "/target/debug/" .. execname
+          end,
+          cwd = '${workspaceFolder}',
+          stopAtEntry = false,
+          externalConsole = false,
+          args = function()
+            return {vim.fn.input('Argument: ')}
+          end,
+        }}
 
         -- INFO: execute ~/Downloads/vscode-extensions/codelldb/extension/adapter/codelldb --port 13000
 
@@ -155,42 +155,42 @@ require ('mason-nvim-dap').setup({
         }
 
         dap.configurations.c = dap.configurations.c
---
---        dap.configurations.rust = {
---            {
---                type = 'codelldb',
---                request = 'launch',
---                program = function()
---                    return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/', 'file')
---                end,
---                cwd = '${workspaceFolder}',
---                terminal = 'integrated',
---                sourceLanguages = { 'rust' }
---            }
---        }
+        --
+        --        dap.configurations.rust = {
+        --            {
+        --                type = 'codelldb',
+        --                request = 'launch',
+        --                program = function()
+        --                    return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/', 'file')
+        --                end,
+        --                cwd = '${workspaceFolder}',
+        --                terminal = 'integrated',
+        --                sourceLanguages = { 'rust' }
+        --            }
+        --        }
 
-      -- Keep original functionality of `automatic_setup = true`
-      require('mason-nvim-dap.automatic_setup')(source_name)
-    end,
-    python = function(source_name)
+        -- Keep original functionality of `automatic_setup = true`
+        require('mason-nvim-dap.automatic_setup')(source_name)
+      end,
+      python = function(source_name)
         dap.adapters.python = {
-	        type = "executable",
-	        command = "/usr/bin/python3",
-	        args = {
-		        "-m",
-		        "debugpy.adapter",
-	        },
+          type = "executable",
+          command = "/usr/bin/python3",
+          args = {
+            "-m",
+            "debugpy.adapter",
+          },
         }
 
         dap.configurations.python = {
-	        {
-		        type = "python",
-		        request = "launch",
-		        name = "Launch file",
-		        program = "${file}", -- This configuration will launch the current file if used.
-	        },
+          {
+            type = "python",
+            request = "launch",
+            name = "Launch file",
+            program = "${file}", -- This configuration will launch the current file if used.
+          },
         }
-    end,
-  }
-})
+      end,
+    }
+  })
 

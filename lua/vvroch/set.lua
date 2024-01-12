@@ -58,8 +58,6 @@ vim.wo.signcolumn = 'yes'
 -- remove status at bottom - --insert-- --replace--
 vim.o.showmode = false
 
-vim.g.mapleader = " "
-
 vim.o.termguicolors = true
 
 -- Set completeopt to have a better completion experience

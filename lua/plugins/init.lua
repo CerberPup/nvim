@@ -2,8 +2,6 @@ return {
     { import = 'plugins.rust' },
     { import = 'plugins.webdev' },
     { import = 'plugins.git' },
-
-    'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
     'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
     --Language packs
