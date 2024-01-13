@@ -2,8 +2,6 @@
 -- Native LSP Setup
 -- nvim-cmp setup
 
-require("luasnip.loaders.from_vscode").lazy_load()
-require("nvim-autopairs").setup()
 
 -- local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 

@@ -15,25 +15,9 @@ return {
 
     -- All the things
     'glepnir/lspsaga.nvim', --Powerful lsp fix, rename, jump thingy
-    'nvim-lua/lsp_extensions.nvim', -- podpowiedzi w postaci nazw argumentów funkcji
-    'onsails/lspkind-nvim', -- piktogramy do autocomplete
-    'rafamadriz/friendly-snippets',
     'ray-x/lsp_signature.nvim',
 
-    { -- LSP Configuration & Plugins
-        'neovim/nvim-lspconfig',
-        dependencies = {
-            -- Automatically install LSPs to stdpath for neovim
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
 
-            -- Useful status updates for LSP
-            'j-hui/fidget.nvim',
-        },
-    },
-
-
-    'windwp/nvim-autopairs', -- auto close parentheses
 
     -- 'simrat39/symbols-outline.nvim' -- jump i rename z okienka
 
