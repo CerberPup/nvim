@@ -73,33 +73,39 @@ return {
 				lua_ls = {},
 			}
 			require("mason-lspconfig").setup({
-				ensure_installed = vim.tbl_keys(servers),
+				-- ensure_installed = vim.tbl_keys(servers),
 			})
 
 			-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-			require("mason-lspconfig").setup_handlers({
-				function(server_name)
-					require("lspconfig")[server_name].setup({
-						capabilities = capabilities,
-						on_attach = function(_, bufnr)
-							if server_name == "clangd" then
-								local glob = vim.fn.glob(vim.fn.getcwd() .. "/src/main.cpp", true, true)
-								if next(glob) ~= nil then
-									vim.api.nvim_create_autocmd("BufWritePost", {
-										pattern = { "*.cpp", "*.h" },
-										command = ":!" .. vim.fn.stdpath("config") .. "/scripts/build.sh",
-									})
-								end
+
+			function register_server(server_name)
+				require("lspconfig")[server_name].setup({
+					capabilities = capabilities,
+					on_attach = function(_, bufnr)
+						if server_name == "clangd" then
+							local glob = vim.fn.glob(vim.fn.getcwd() .. "/src/main.cpp", true, true)
+							if next(glob) ~= nil then
+								vim.api.nvim_create_autocmd("BufWritePost", {
+									pattern = { "*.cpp", "*.h" },
+									command = ":!" .. vim.fn.stdpath("config") .. "/scripts/build.sh",
+								})
 							end
-							return on_attach(_, bufnr)
-						end,
-						settings = servers[server_name],
-					})
-				end,
+						end
+						return on_attach(_, bufnr)
+					end,
+					settings = servers[server_name],
+				})
+			end
+
+			register_server("clangd") --force clangd for raspberrypi
+
+			require("mason-lspconfig").setup_handlers({
+				register_server
 			})
+
 		end,
 	},
 	{
