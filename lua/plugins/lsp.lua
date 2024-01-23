@@ -80,7 +80,6 @@ return {
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-
 			function register_server(server_name)
 				require("lspconfig")[server_name].setup({
 					capabilities = capabilities,
@@ -100,12 +99,12 @@ return {
 				})
 			end
 
-			register_server("clangd") --force clangd for raspberrypi
-
+			if vim.fn.executable("clangd") == 1 then
+				register_server("clangd") --force clangd for raspberrypi
+			end
 			require("mason-lspconfig").setup_handlers({
-				register_server
+				register_server,
 			})
-
 		end,
 	},
 	{
