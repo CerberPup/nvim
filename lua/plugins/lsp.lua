@@ -15,7 +15,9 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		dependencies = { "neovim/nvim-lspconfig" },
+		dependencies = { "neovim/nvim-lspconfig",
+		"https://gitlab.com/schrieveslaach/sonarlint.nvim.git",
+	},
 		config = function()
 			-- LSP settings.
 			-- This function gets run when an LSP connects to a particular buffer.
@@ -66,13 +68,14 @@ return {
 			vim.keymap.set("n", "<leader>cdl", vim.diagnostic.setloclist, { desc = "[C]ode [D]iagnostic [L]ist" })
 			local servers = {
 				clangd = {},
-				-- gopls = {},
+				gopls = {},
 				pyright = {},
 				-- rust_analyzer = {},
 				-- tsserver = {},
 				lua_ls = {},
 			}
 			require("mason-lspconfig").setup({
+				ensure_installed = { "ast_grep" },
 				-- ensure_installed = vim.tbl_keys(servers),
 			})
 
@@ -104,6 +107,24 @@ return {
 			end
 			require("mason-lspconfig").setup_handlers({
 				register_server,
+			})
+			require("sonarlint").setup({
+				server = {
+					cmd = {
+						"sonarlint-language-server",
+						-- Ensure that sonarlint-language-server uses stdio channel
+						"-stdio",
+						"-analyzers",
+						-- paths to the analyzers you need, using those for python and java in this example
+						vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
+						vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
+					},
+				},
+				filetypes = {
+					-- Tested and working
+					"python",
+					"cpp",
+				},
 			})
 		end,
 	},
