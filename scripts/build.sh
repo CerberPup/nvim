@@ -19,4 +19,10 @@ add_executable(out \${src} \${headers})
 EOT
 cmake -S bin -B bin
 make -C bin
+
+if [ ! -f compile_commands.json ]
+then
+  ln -s bin/compile_commands.json compile_commands.json
+fi
+
 mv -f bin/out ./out
