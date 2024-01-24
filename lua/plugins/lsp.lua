@@ -115,15 +115,18 @@ return {
 						-- Ensure that sonarlint-language-server uses stdio channel
 						"-stdio",
 						"-analyzers",
-						-- paths to the analyzers you need, using those for python and java in this example
+						-- paths to the analyzers you need, using those for python and c in this example
 						vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
 						vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
+						vim.fn.expand("$MASON/share/sonarlint-analyzers/sonargo.jar"),
+						-- vim.fn.expand("$MASON/share/sonarlint-analyzers/sonariac.jar"), -- docker (Infrastructure as code)
 					},
 				},
 				filetypes = {
 					-- Tested and working
 					"python",
 					"cpp",
+					"go"
 				},
 			})
 		end,
