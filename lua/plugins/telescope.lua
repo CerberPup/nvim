@@ -18,7 +18,7 @@ return {
       },
       {
         "<C-f>",
-        function() require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy='ascending', previewer = false, prompt_position='top'}) end,
+        function() require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy='ascending', previewer = false, winblend=10}) end,
         desc = 'Find in current buffer'
       },
       {
