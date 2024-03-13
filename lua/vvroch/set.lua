@@ -7,7 +7,7 @@ vim.opt.mouse = 'a'
 vim.o.breakindent = true
 
 -- Make line numbers default
-vim.wo.number = true
+vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.errorbells = false
@@ -25,8 +25,8 @@ vim.opt.wrap = false
 vim.opt.foldlevelstart = 99
 
 -- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- files + undodir
 vim.opt.swapfile = false
@@ -34,7 +34,8 @@ vim.opt.backup = false
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir")
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+-- Set highlight on search, but clear on pressing <Esc> in normal mode
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.scrolloff = 8
@@ -47,8 +48,20 @@ vim.opt.scrolloff = 8
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.
 -- Decrease update time
-vim.o.updatetime = 50
-vim.wo.signcolumn = 'yes'
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
+-- Configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+vim.opt.signcolumn = 'yes'
+
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = 'split'
 
 -- Don't pass messages to |ins-completion-menu|.
 -- vim.opt.shortmess:append("c")
@@ -69,6 +82,11 @@ vim.o.completeopt = 'menuone,noselect'
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- Sync clipboard between OS and Neovim.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.opt.clipboard = 'unnamedplus'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
