@@ -42,6 +42,7 @@ return {
 					nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
 					-- Lesser used LSP functionality
+	 	      nmap("<leader>gf", vim.lsp.buf.format, "Format document")
 					nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 					nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
 					nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
@@ -94,6 +95,10 @@ return {
 								pattern = { "*.cpp", "*.h" },
 								command = ":!" .. vim.fn.stdpath("config") .. "/scripts/build.sh",
 							})
+              local clangf = vim.fn.getcwd() .. "/.clang-format"
+              if next(vim.fn.glob(clangf, true, true)) == nil then
+                os.execute("cp " .. vim.fn.stdpath("config") .. "/scripts/.clang-format " .. clangf)
+              end
 						end
 					end,
 					cmd = {
@@ -145,7 +150,7 @@ return {
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format lua code
-				"ast_grep",
+				-- "ast_grep",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
