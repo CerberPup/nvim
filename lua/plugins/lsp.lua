@@ -92,7 +92,7 @@ return {
             local glob = vim.fn.glob(vim.fn.getcwd() .. "/src/main.cpp", true, true)
             if next(glob) ~= nil then
               vim.api.nvim_create_autocmd("BufWritePost", {
-                pattern = { "*.cpp", "*.h" },
+                pattern = { "main.cpp" },
                 command = ":!" .. vim.fn.stdpath("config") .. "/scripts/build.sh",
               })
               local clangf = vim.fn.getcwd() .. "/.clang-format"
