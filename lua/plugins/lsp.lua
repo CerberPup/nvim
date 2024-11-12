@@ -89,10 +89,12 @@ return {
       local servers = {
         clangd = {
           on_attach = function(_, bufnr)
+            -- local n = vim.api.nvim_buf_get_name(bufnr)
+            -- print(vim.inspect(n))
             local glob = vim.fn.glob(vim.fn.getcwd() .. "/src/main.cpp", true, true)
             if next(glob) ~= nil then
               vim.api.nvim_create_autocmd("BufWritePost", {
-                pattern = { "*.cpp", "*.h" },
+                pattern = { "main.cpp" },
                 command = ":!" .. vim.fn.stdpath("config") .. "/scripts/build.sh",
               })
               local clangf = vim.fn.getcwd() .. "/.clang-format"

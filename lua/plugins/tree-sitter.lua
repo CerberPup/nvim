@@ -1,4 +1,4 @@
-return {
+return {{
     "romgrk/nvim-treesitter-context", -- floating line of function you are inside
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
@@ -89,4 +89,4 @@ return {
             -- },
         })
     end,
-}
+}}
